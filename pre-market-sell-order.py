@@ -1,8 +1,15 @@
 import alpaca_trade_api as tradeapi
 import yfinance as yf
+import os, sys
 
-# Initialize Alpaca API with your credentials
-api = tradeapi.REST('YOUR_API_KEY', 'YOUR_SECRET_KEY', base_url='https://paper-api.alpaca.markets')  # Use paper trading for testing
+# Load environment variables for Alpaca API
+APIKEYID = os.getenv('APCA_API_KEY_ID')
+APISECRETKEY = os.getenv('APCA_API_SECRET_KEY')
+APIBASEURL = os.getenv('APCA_API_BASE_URL')
+
+# Initialize the Alpaca API
+api = tradeapi.REST(APIKEYID, APISECRETKEY, APIBASEURL)
+
 
 def main_menu():
     print("1. Print All Owned Stocks")
