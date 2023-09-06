@@ -10,7 +10,7 @@ APIBASEURL = os.getenv('APCA_API_BASE_URL')
 # Initialize the Alpaca API
 api = tradeapi.REST(APIKEYID, APISECRETKEY, APIBASEURL)
 
-global symbol, shares_to_sell
+global symbol, shares_to_sell, limit_price_number
 
 
 def main_menu():
@@ -46,12 +46,13 @@ def sell_stock(symbol):
         print(f"Shares Owned: {current_quantity}")
         print(f"Avg. Price Paid: ${position.avg_entry_price}")
         print(f"Current Price: ${current_stock_price}")  # Display the current price
+        limit_price_number = float(input("Enter the limit price per share: "))
         shares_to_sell = int(input("Enter the number of shares to sell: "))
 
         if shares_to_sell <= current_quantity:
             order_total = shares_to_sell * current_stock_price
             print(f"Order Total: ${order_total}")
-            proceed = input("Proceed to sell during pre-market? (Yes/No): ").lower()
+            proceed = input("Proceed to sell during pre-market? (yes/no): ").lower()
             if proceed == "yes":
                 submit_pre_market_sell_order(symbol, shares_to_sell)
             else:
@@ -62,7 +63,7 @@ def sell_stock(symbol):
         print(f"You don't own any shares of {symbol}.")
 
 
-def submit_pre_market_sell_order(symbol, shares_to_sell):
+def submit_pre_market_sell_order(symbol, limit_price_number , shares_to_sell):
     # Get current position
     position = api.get_position(symbol)
 
@@ -77,7 +78,7 @@ def submit_pre_market_sell_order(symbol, shares_to_sell):
             'side': 'sell',  # Set to 'sell' for a sell order
             'type': 'limit',
             'time_in_force': 'day',
-            'limit_price': current_price,  # Set the limit price as the current price
+            'limit_price': limit_price_number,  # Set the limit price as the current price
             'extended_hours': True  # Set to true for extended hours trading
         }
 
