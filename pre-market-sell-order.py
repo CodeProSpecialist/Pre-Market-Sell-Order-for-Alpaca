@@ -63,7 +63,7 @@ def sell_stock(symbol):
         print(f"You don't own any shares of {symbol}.")
 
 
-def submit_pre_market_sell_order(symbol, limit_price_number , shares_to_sell):
+def submit_pre_market_sell_order(symbol, shares_to_sell , limit_price_number):
     # Get current position
     position = api.get_position(symbol)
 
