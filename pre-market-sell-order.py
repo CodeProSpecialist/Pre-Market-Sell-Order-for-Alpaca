@@ -45,11 +45,12 @@ def sell_stock(symbol):
         print(f"Symbol: {symbol}")
         print(f"Shares Owned: {current_quantity}")
         print(f"Avg. Price Paid: ${position.avg_entry_price}")
-        print(f"Current Price: ${current_stock_price}")  # Display the current price
-        print("Set a limit price higher than the current market price.")
+        print(f"Previous Market Closing Price: ${current_stock_price}")  # Display the current price
+        print("Remember that the Pre-market price is different than the Previous Market Closing Price. ")
+        print("Set a limit price equal to or higher than the current pre-market price.")
         print("To sell more quickly, "
-              "set the limit price as $0.01 cent higher than the "
-              "current market price.")
+              "set the limit price as exactly the same price as the "
+              "current pre-market price.") 
         limit_price_number = float(input("Enter the limit price per share: "))
         shares_to_sell = int(input("Enter the number of shares to sell: "))
 
