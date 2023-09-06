@@ -53,9 +53,35 @@ def sell_stock(symbol):
     else:
         print(f"You don't own any shares of {symbol}.")
 
-def submit_pre_market_sell_order(symbol, quantity):
-    # The function to submit a pre-market sell order (as previously discussed)
-    pass
+
+def submit_pre_market_sell_order(symbol):
+    # Get current position
+    position = api.get_position(symbol)
+
+    if position:
+        current_quantity = int(position.qty)  # Convert to an integer
+        current_price = float(api.get_last_trade(symbol).price)  # Get the last trade price as the current price
+
+        # Define order parameters
+        order = {
+            'symbol': symbol,
+            'qty': current_quantity,  # Add current quantity to the sell order
+            'side': 'sell',  # Set to 'sell' for a sell order
+            'type': 'limit',
+            'time_in_force': 'day',
+            'limit_price': current_price,  # Set the limit price as the current price
+            'extended_hours': True  # Set to true for extended hours trading
+        }
+
+        try:
+            # Submit the order
+            api.submit_order(**order)
+            print(f"Sell order for {current_quantity} shares of {symbol} submitted successfully during pre-market hours at {current_price}.")
+        except Exception as e:
+            print(f"Error submitting sell order: {e}")
+    else:
+        print(f"No position found for {symbol}.")
+
 
 while True:
     main_menu()
