@@ -13,7 +13,7 @@ api = tradeapi.REST(APIKEYID, APISECRETKEY, APIBASEURL)
 
 def main_menu():
     print("")
-    print("Pre-market: 4:00am - 9:30am ET Monday to Friday ")
+    print("Pre-market: 4:00am - 9:30am ET Monday thru Friday ")
     print("")
     print("1. Print All Owned Stocks")
     print("2. Sell Stock during Pre-Market")
