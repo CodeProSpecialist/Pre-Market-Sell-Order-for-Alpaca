@@ -50,7 +50,7 @@ def sell_stock(symbol):
         shares_to_sell = int(input("Enter the number of shares to sell: "))
 
         if shares_to_sell <= current_quantity:
-            order_total = shares_to_sell * current_stock_price
+            order_total = shares_to_sell * limit_price_number
             print(f"Order Total: ${order_total}")
             proceed = input("Proceed to sell during pre-market? (yes/no): ").lower()
             if proceed == "yes":
@@ -85,7 +85,7 @@ def submit_pre_market_sell_order(symbol, shares_to_sell , limit_price_number):
         try:
             # Submit the order
             api.submit_order(**order)
-            print(f"Sell order for {current_quantity} shares of {symbol} submitted successfully during pre-market hours at {current_price}.")
+            print(f"Sell order for {current_quantity} shares of {symbol} submitted successfully during pre-market hours at {limit_price_number}.")
         except Exception as e:
             print(f"Error submitting sell order: {e}")
     else:
