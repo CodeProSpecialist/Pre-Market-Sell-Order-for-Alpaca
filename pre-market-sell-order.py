@@ -12,9 +12,14 @@ api = tradeapi.REST(APIKEYID, APISECRETKEY, APIBASEURL)
 
 
 def main_menu():
+    print("")
+    print("Pre-market: 4:00am - 9:30am ET Monday to Friday ")
+    print("")
     print("1. Print All Owned Stocks")
     print("2. Sell Stock during Pre-Market")
     print("3. Exit")
+    print("")
+
 
 def print_owned_stocks():
     positions = api.list_positions()
@@ -24,6 +29,7 @@ def print_owned_stocks():
             print(f"{i + 1}. {position.symbol} - Shares: {position.qty}, Avg. Price: ${position.avg_entry_price}")
     else:
         print("You don't own any stocks.")
+
 
 def sell_stock(symbol):
     position = api.get_position(symbol)
