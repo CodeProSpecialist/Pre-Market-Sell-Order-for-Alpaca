@@ -68,7 +68,7 @@ def submit_pre_market_sell_order(symbol, shares_to_sell):
 
     if position:
         current_quantity = int(position.qty)  # Convert to an integer
-        current_price = float(api.get_last_trade(symbol).price)  # Get the last trade price as the current price
+        current_price = float(api.get_latest_trade(symbol).price)  # Get the last trade price as the current price
 
         # Define order parameters
         order = {
