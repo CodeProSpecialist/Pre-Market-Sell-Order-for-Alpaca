@@ -10,6 +10,8 @@ APIBASEURL = os.getenv('APCA_API_BASE_URL')
 # Initialize the Alpaca API
 api = tradeapi.REST(APIKEYID, APISECRETKEY, APIBASEURL)
 
+global symbol, shares_to_sell
+
 
 def main_menu():
     print("")
@@ -60,7 +62,7 @@ def sell_stock(symbol):
         print(f"You don't own any shares of {symbol}.")
 
 
-def submit_pre_market_sell_order(symbol):
+def submit_pre_market_sell_order(symbol, shares_to_sell):
     # Get current position
     position = api.get_position(symbol)
 
@@ -71,7 +73,7 @@ def submit_pre_market_sell_order(symbol):
         # Define order parameters
         order = {
             'symbol': symbol,
-            'qty': current_quantity,  # Add current quantity to the sell order
+            'qty': shares_to_sell,  # Add current quantity to the sell order
             'side': 'sell',  # Set to 'sell' for a sell order
             'type': 'limit',
             'time_in_force': 'day',
