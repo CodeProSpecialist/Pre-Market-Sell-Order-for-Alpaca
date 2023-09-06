@@ -54,7 +54,7 @@ def sell_stock(symbol):
             print(f"Order Total: ${order_total}")
             proceed = input("Proceed to sell during pre-market? (yes/no): ").lower()
             if proceed == "yes":
-                submit_pre_market_sell_order(symbol, shares_to_sell)
+                submit_pre_market_sell_order(symbol, shares_to_sell, limit_price_number)  # Pass all three arguments
             else:
                 print("Sell order canceled.")
         else:
