@@ -1,6 +1,12 @@
 # Pre-Market-Sell-Order-for-Alpaca
 Cash in on extra profit money by selling within the high profit Pre-Market prices with this Pre-Market Sell Order for Alpaca Python program. 
 
+Most Sell Limit Orders should be set to a price that is greater than or equal to the current pre-market price. 
+
+Sell the stock faster by setting the stock price to exactly the same price as the current pre-market price. 
+
+Pre-market orders are not guaranteed to go through and the orders are filled on a first come, first served basis. 
+
 Do the following with a non-root user account: After placing your alpaca keys at the bottom of /home/nameofyourhomefolderhere/.bashrc you simply run the command in a command terminal like:
 
 python3 pre-market-sell-order.py
